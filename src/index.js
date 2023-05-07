@@ -5,16 +5,27 @@ const onClickAdd = () => {
   const input = document.getElementById("input").value;
   document.getElementById("input").value = "";
 
-  //div
+  //div作成
   const div = document.createElement("div");
   div.className = "one_line";
 
-  //li
+  //li作成
   const li = document.createElement("li");
   li.innerText = input;
 
-  div.appendChild(li);
+  //完了ボタン作成
+  const complateButton = document.createElement("button");
+  complateButton.innerText = "完了";
 
+  //削除ボタン作成
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  console.log(deleteButton);
+
+  //未作成リストに設定
+  div.appendChild(li);
+  div.appendChild(complateButton);
+  div.appendChild(deleteButton);
   document.getElementById("incomplate-ul").appendChild(div);
 };
 

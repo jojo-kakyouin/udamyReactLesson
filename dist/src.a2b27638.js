@@ -181,14 +181,27 @@ var onClickAdd = function onClickAdd() {
   var input = document.getElementById("input").value;
   document.getElementById("input").value = "";
 
-  //div
+  //div作成
   var div = document.createElement("div");
   div.className = "one_line";
 
-  //li
+  //li作成
   var li = document.createElement("li");
   li.innerText = input;
+
+  //完了ボタン作成
+  var complateButton = document.createElement("button");
+  complateButton.innerText = "完了";
+
+  //削除ボタン作成
+  var deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  console.log(deleteButton);
+
+  //未作成リストに設定
   div.appendChild(li);
+  div.appendChild(complateButton);
+  div.appendChild(deleteButton);
   document.getElementById("incomplate-ul").appendChild(div);
 };
 document.getElementById("add-button").addEventListener("click", function () {
