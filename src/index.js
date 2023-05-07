@@ -15,7 +15,7 @@ const onClickAdd = () => {
 
   div.appendChild(li);
 
-  document.getElementById("incomplate").appendChild(div);
+  document.getElementById("incomplate-ul").appendChild(div);
 };
 
 document

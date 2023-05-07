@@ -189,7 +189,7 @@ var onClickAdd = function onClickAdd() {
   var li = document.createElement("li");
   li.innerText = input;
   div.appendChild(li);
-  document.getElementById("incomplate").appendChild(div);
+  document.getElementById("incomplate-ul").appendChild(div);
 };
 document.getElementById("add-button").addEventListener("click", function () {
   return onClickAdd();
