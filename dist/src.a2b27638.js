@@ -196,7 +196,11 @@ var onClickAdd = function onClickAdd() {
   //削除ボタン作成
   var deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
-  console.log(deleteButton);
+  // 削除ボタン押下時処理
+  deleteButton.addEventListener("click", function () {
+    var deteleTarget = deleteButton.parentNode;
+    document.getElementById("incomplate-ul").removeChild(deteleTarget);
+  });
 
   //未作成リストに設定
   div.appendChild(li);

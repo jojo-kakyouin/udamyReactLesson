@@ -37,7 +37,13 @@ button:hover {
   margin-top: 0px;
   font-weight: bold;
 }
+
+.one_line > li {
+  margin-right: 8px;
+}
+
 .one_line {
   display: flex;
   align-items: center;
+  margin: 8px;
 }
