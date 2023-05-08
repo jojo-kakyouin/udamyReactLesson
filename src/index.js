@@ -13,11 +13,23 @@ const onClickAdd = () => {
   const li = document.createElement("li");
   li.innerText = input;
 
-  //完了ボタン作成
+  // ■ 完了ボタン作成
   const complateButton = document.createElement("button");
   complateButton.innerText = "完了";
+  // 完了ボタン押下時処理
+  complateButton.addEventListener("click", () => {
+    const moveTarget = complateButton.parentNode;
+    document.getElementById("incomplate-ul").removeChild(moveTarget);
 
-  //削除ボタン作成
+    const children = moveTarget.childNodes;
+    moveTarget.removeChild(children[1]);
+
+    children[1].textContent = "戻る";
+    moveTarget.appendChild(children[1]);
+    document.getElementById("complate-ul").appendChild(moveTarget);
+  });
+
+  // ■ 削除ボタン作成
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   // 削除ボタン押下時処理
