@@ -180,14 +180,23 @@ var onClickAdd = function onClickAdd() {
   // 入力値取得とクリア
   var input = document.getElementById("input").value;
   document.getElementById("input").value = "";
+  addIncomplateArea(input);
+};
 
+// 未完了エリアからの削除
+var deleteFromIncomplateArea = function deleteFromIncomplateArea(targetElement) {
+  document.getElementById("incomplate-ul").removeChild(targetElement);
+};
+
+// 未完了エリアへ追加
+var addIncomplateArea = function addIncomplateArea(text) {
   //div作成
   var div = document.createElement("div");
   div.className = "one_line";
 
   //li作成
   var li = document.createElement("li");
-  li.innerText = input;
+  li.innerText = text;
 
   // ■ 完了ボタン作成
   var complateButton = document.createElement("button");
@@ -196,13 +205,15 @@ var onClickAdd = function onClickAdd() {
   complateButton.addEventListener("click", function () {
     var moveTarget = complateButton.parentNode;
     // 未完了エリアからの削除
-    deleteFromIncomplateArea(moveTarget);
+    document.getElementById("incomplate-ul").removeChild(moveTarget);
     var children = moveTarget.childNodes;
     moveTarget.removeChild(children[1]);
     children[1].textContent = "戻る";
     children[1].addEventListener("click", function () {
       // 戻るボタン押下時の処理
-      document.getElementById("complate-ul").removeChild(children[1].parentNode);
+      document.getElementById("complate-ul").removeChild(moveTarget);
+      //console.log(children[0].textContent);
+      addIncomplateArea(children[0].textContent);
     });
     moveTarget.appendChild(children[1]);
     document.getElementById("complate-ul").appendChild(moveTarget);
@@ -214,7 +225,7 @@ var onClickAdd = function onClickAdd() {
   // 削除ボタン押下時処理
   deleteButton.addEventListener("click", function () {
     // 未完了エリアからの削除
-    deleteFromIncomplateArea(deleteButton.parentNode);
+    document.getElementById("incomplate-ul").removeChild(deleteButton.parentNode);
   });
 
   //未作成リストに設定
@@ -222,11 +233,6 @@ var onClickAdd = function onClickAdd() {
   div.appendChild(complateButton);
   div.appendChild(deleteButton);
   document.getElementById("incomplate-ul").appendChild(div);
-};
-
-// 未完了エリアからの削除
-var deleteFromIncomplateArea = function deleteFromIncomplateArea(targetElement) {
-  document.getElementById("incomplate-ul").removeChild(targetElement);
 };
 
 // 追加ボタン押下時処理
