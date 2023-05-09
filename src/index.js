@@ -19,12 +19,19 @@ const onClickAdd = () => {
   // 完了ボタン押下時処理
   complateButton.addEventListener("click", () => {
     const moveTarget = complateButton.parentNode;
-    document.getElementById("incomplate-ul").removeChild(moveTarget);
-
+    // 未完了エリアからの削除
+    deleteFromIncomplateArea(moveTarget);
     const children = moveTarget.childNodes;
     moveTarget.removeChild(children[1]);
 
     children[1].textContent = "戻る";
+    children[1].addEventListener("click", () => {
+      // 戻るボタン押下時の処理
+      document
+        .getElementById("complate-ul")
+        .removeChild(children[1].parentNode);
+    });
+
     moveTarget.appendChild(children[1]);
     document.getElementById("complate-ul").appendChild(moveTarget);
   });
@@ -34,8 +41,8 @@ const onClickAdd = () => {
   deleteButton.innerText = "削除";
   // 削除ボタン押下時処理
   deleteButton.addEventListener("click", () => {
-    const deteleTarget = deleteButton.parentNode;
-    document.getElementById("incomplate-ul").removeChild(deteleTarget);
+    // 未完了エリアからの削除
+    deleteFromIncomplateArea(deleteButton.parentNode);
   });
 
   //未作成リストに設定
@@ -45,6 +52,12 @@ const onClickAdd = () => {
   document.getElementById("incomplate-ul").appendChild(div);
 };
 
+// 未完了エリアからの削除
+const deleteFromIncomplateArea = (targetElement) => {
+  document.getElementById("incomplate-ul").removeChild(targetElement);
+};
+
+// 追加ボタン押下時処理
 document
   .getElementById("add-button")
   .addEventListener("click", () => onClickAdd());

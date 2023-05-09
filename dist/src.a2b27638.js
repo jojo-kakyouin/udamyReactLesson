@@ -195,10 +195,15 @@ var onClickAdd = function onClickAdd() {
   // 完了ボタン押下時処理
   complateButton.addEventListener("click", function () {
     var moveTarget = complateButton.parentNode;
-    document.getElementById("incomplate-ul").removeChild(moveTarget);
+    // 未完了エリアからの削除
+    deleteFromIncomplateArea(moveTarget);
     var children = moveTarget.childNodes;
     moveTarget.removeChild(children[1]);
     children[1].textContent = "戻る";
+    children[1].addEventListener("click", function () {
+      // 戻るボタン押下時の処理
+      document.getElementById("complate-ul").removeChild(children[1].parentNode);
+    });
     moveTarget.appendChild(children[1]);
     document.getElementById("complate-ul").appendChild(moveTarget);
   });
@@ -208,8 +213,8 @@ var onClickAdd = function onClickAdd() {
   deleteButton.innerText = "削除";
   // 削除ボタン押下時処理
   deleteButton.addEventListener("click", function () {
-    var deteleTarget = deleteButton.parentNode;
-    document.getElementById("incomplate-ul").removeChild(deteleTarget);
+    // 未完了エリアからの削除
+    deleteFromIncomplateArea(deleteButton.parentNode);
   });
 
   //未作成リストに設定
@@ -218,6 +223,13 @@ var onClickAdd = function onClickAdd() {
   div.appendChild(deleteButton);
   document.getElementById("incomplate-ul").appendChild(div);
 };
+
+// 未完了エリアからの削除
+var deleteFromIncomplateArea = function deleteFromIncomplateArea(targetElement) {
+  document.getElementById("incomplate-ul").removeChild(targetElement);
+};
+
+// 追加ボタン押下時処理
 document.getElementById("add-button").addEventListener("click", function () {
   return onClickAdd();
 });
